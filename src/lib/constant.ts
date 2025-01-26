@@ -1,5 +1,10 @@
+import { File, Home } from 'lucide-react';
+import getConfig from 'next/config';
+
 import { env } from '@/env.mjs';
 import * as m from '@/paraglide/messages';
+
+const config = getConfig();
 
 export const siteConfig = {
   title: m.meta_title,
@@ -18,4 +23,17 @@ export const siteConfig = {
   ],
   url: () => env.APP_URL,
   googleSiteVerificationId: () => env.GOOGLE_SITE_VERIFICATION_ID || '',
+  version: () => config?.publicRuntimeConfig?.version ?? '0.0.0',
+  pages: () => [
+    {
+      title: 'Home',
+      url: '/',
+      icon: Home,
+    },
+    {
+      title: 'Documents',
+      url: '/documents',
+      icon: File,
+    },
+  ],
 };

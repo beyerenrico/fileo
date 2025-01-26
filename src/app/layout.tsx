@@ -4,6 +4,8 @@ import { PropsWithChildren } from 'react';
 import { LanguageProvider } from '@inlang/paraglide-next';
 import type { Metadata } from 'next';
 
+import { auth } from '@/app/api/auth/[...nextauth]/auth-options';
+import { Dashboard } from '@/components/dashboard';
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar/navbar';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -48,16 +50,22 @@ export const generateMetadata = (): Metadata => ({
   },
 });
 
-const RootLayout = ({ children }: PropsWithChildren) => {
+const RootLayout = async ({ children }: PropsWithChildren) => {
+  const session = await auth();
+
   return (
     <LanguageProvider>
       <html lang={languageTag()} suppressHydrationWarning>
         <body className={cn('min-h-screen font-sans', fonts)}>
           <ThemeProvider attribute="class">
-            <Navbar />
-            {children}
-            <ThemeSwitcher className="absolute bottom-5 right-5 z-10" />
-            <Footer />
+            {!session && <Navbar />}
+            {session ? <Dashboard>{children}</Dashboard> : children}
+            {!session && (
+              <>
+                <ThemeSwitcher className="absolute bottom-5 right-5 z-10" />
+                <Footer />
+              </>
+            )}
             <Toaster />
           </ThemeProvider>
         </body>

@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       alternates: {
         languages: {
-          pl: `${env.APP_URL}/pl`,
+          de: `${env.APP_URL}/de`,
         },
       },
     },

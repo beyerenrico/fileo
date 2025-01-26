@@ -1,6 +1,6 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
-    "app_name": "next-starter",
+    "app_name": "Fileo",
     "sign_in": "Anmelden",
     "theme_toggle_label": "theme toggle",
     "my_account": "Mein Profil",
@@ -9,7 +9,7 @@
     "you_are_a_pro": "You are pro!",
     "input_placeholder": "Gib deinen Namen ein ...",
     "submit_form": "Senden",
-    "meta_title": "Next.js Starter",
+    "meta_title": "Fileo",
     "meta_description": "A Next.js starter template, packed with features like TypeScript, Tailwind CSS, Next-auth, Eslint, testing tools and more. Jumpstart your project with efficiency and style.",
     "meta_keyword_nextjs": "Next.js",
     "meta_keyword_react": "React",
@@ -24,5 +24,8 @@
     "nextjs_starter_template_headline": "Next.js starter template",
     "nextjs_starter_template_description": "A Next.js starter template, packed with features like TypeScript, Tailwind CSS, Next-auth, Eslint, Stripe, Paraglide, testing tools and more. Jumpstart your project with efficiency and style.",
     "get_started": "Jetzt anfangen",
-    "github": "Github"
+    "github": "Github",
+    "dashboard": "Dashboard",
+    "page_not_found": "Diese Seite existiert nicht \uD83D\uDE48",
+    "go_home": "Zurück zur Startseite"
 }
