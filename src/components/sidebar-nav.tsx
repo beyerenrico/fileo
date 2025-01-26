@@ -20,7 +20,7 @@ const SidebarNav = () => {
       <SidebarGroupLabel>Application</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {siteConfig.pages().map((item) => (
+          {siteConfig.pages.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 asChild

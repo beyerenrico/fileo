@@ -24,14 +24,14 @@ export const siteConfig = {
   url: () => env.APP_URL,
   googleSiteVerificationId: () => env.GOOGLE_SITE_VERIFICATION_ID || '',
   version: () => config?.publicRuntimeConfig?.version ?? '0.0.0',
-  pages: () => [
+  pages: [
     {
-      title: 'Home',
+      title: m.pages_home_title(),
       url: '/',
       icon: Home,
     },
     {
-      title: 'Documents',
+      title: m.pages_documents_title(),
       url: '/documents',
       icon: File,
     },

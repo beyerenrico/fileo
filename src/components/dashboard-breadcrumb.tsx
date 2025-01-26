@@ -12,7 +12,7 @@ import { useCurrentPage } from '@/hooks/use-current-page';
 import * as m from '@/paraglide/messages';
 
 const DashboardBreadcrumb = () => {
-  const currentPage = useCurrentPage();
+  const { currentPage } = useCurrentPage();
 
   return (
     <Breadcrumb>
@@ -21,9 +21,11 @@ const DashboardBreadcrumb = () => {
           <BreadcrumbLink href="/">{m.dashboard()}</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator className="hidden md:block" />
-        <BreadcrumbItem>
-          <BreadcrumbPage>{currentPage?.title}</BreadcrumbPage>
-        </BreadcrumbItem>
+        {currentPage && (
+          <BreadcrumbItem>
+            <BreadcrumbPage>{currentPage.title}</BreadcrumbPage>
+          </BreadcrumbItem>
+        )}
       </BreadcrumbList>
     </Breadcrumb>
   );

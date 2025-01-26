@@ -5,7 +5,7 @@ import * as m from '@/paraglide/messages';
 
 const NotFound = () => {
   return (
-    <div className="grid size-full place-items-center">
+    <div className="-mt-16 grid h-screen place-items-center">
       <div className="grid grid-cols-1 gap-4">
         <h1 className="flex items-center gap-2">
           <span className="text-2xl font-semibold">404</span>

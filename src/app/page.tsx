@@ -4,7 +4,7 @@ import { Welcome } from '@/components/welcome';
 const Home = async () => {
   const session = await auth();
 
-  return session ? <>Home</> : <Welcome />;
+  return session ? <>Home (Maybe show widgets of some sort)</> : <Welcome />;
 };
 
 export default Home;
