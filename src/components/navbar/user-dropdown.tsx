@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Icons } from '@/components/icons';
 import {
@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 export const UserDropdown = ({ session: { user } }: { session: Session }) => {
+  const locale = useLocale();
   const t = useTranslations('UserDropdown');
 
   return (
@@ -43,7 +44,13 @@ export const UserDropdown = ({ session: { user } }: { session: Session }) => {
           <h2 className="py-2 text-lg font-bold">{user?.name}</h2>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut()}>
+        <DropdownMenuItem
+          onClick={() =>
+            signOut({
+              redirectTo: `/${locale}`,
+            })
+          }
+        >
           <Icons.logOut className="mr-2 size-4" /> <span>{t('log_out')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

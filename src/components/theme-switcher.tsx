@@ -20,7 +20,7 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
       className={className}
       variant="secondary"
       size="icon"
-      aria-label={t('toggle_theme')}
+      aria-label={t('label')}
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
     >
       <Icons.sun className="dark:hidden" />
