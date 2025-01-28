@@ -12,7 +12,7 @@ export const Navbar = async () => {
   const session = await auth();
 
   return (
-    <header className="w-full border-b">
+    <header className="z-10 w-full border-b">
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="font-mono text-lg font-bold">
           {t('title')}
