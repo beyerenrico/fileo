@@ -21,7 +21,7 @@ const DashboardBreadcrumb = () => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        {pathname !== '/' && (
+        {pathname !== '/app' && (
           <>
             <BreadcrumbItem className="hidden md:block">
               <BreadcrumbLink asChild>

@@ -12,12 +12,12 @@ export const siteConfig = {
   pages: [
     {
       title: 'dashboard',
-      url: '/',
+      url: '/app',
       icon: Home,
     },
     {
       title: 'documents',
-      url: '/documents',
+      url: '/app/documents',
       icon: File,
     },
   ],
