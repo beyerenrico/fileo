@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -8,11 +10,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { Link, usePathname } from '@/i18n/routing';
 import { siteConfig } from '@/lib/constant';
-import { Link, usePathname } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
 
 const SidebarNav = () => {
+  const t = useTranslations('Sidebar');
   const path = usePathname();
 
   return (
@@ -20,7 +23,7 @@ const SidebarNav = () => {
       <SidebarGroupLabel>Application</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {siteConfig.pages.map((item) => (
+          {siteConfig?.pages?.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 asChild
@@ -28,7 +31,7 @@ const SidebarNav = () => {
               >
                 <Link href={item.url}>
                   <item.icon />
-                  <span>{item.title}</span>
+                  <span>{t(item.title)}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

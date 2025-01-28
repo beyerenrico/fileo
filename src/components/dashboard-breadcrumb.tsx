@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,21 +11,29 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { useCurrentPage } from '@/hooks/use-current-page';
-import * as m from '@/paraglide/messages';
+import { Link, usePathname } from '@/i18n/routing';
 
 const DashboardBreadcrumb = () => {
+  const t = useTranslations('Breadcrumb');
+  const pathname = usePathname();
   const { currentPage } = useCurrentPage();
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem className="hidden md:block">
-          <BreadcrumbLink href="/">{m.dashboard()}</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator className="hidden md:block" />
+        {pathname !== '/' && (
+          <>
+            <BreadcrumbItem className="hidden md:block">
+              <BreadcrumbLink asChild>
+                <Link href="/">{t('dashboard')}</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator className="hidden md:block" />
+          </>
+        )}
         {currentPage && (
           <BreadcrumbItem>
-            <BreadcrumbPage>{currentPage.title}</BreadcrumbPage>
+            <BreadcrumbPage>{t(currentPage.title)}</BreadcrumbPage>
           </BreadcrumbItem>
         )}
       </BreadcrumbList>

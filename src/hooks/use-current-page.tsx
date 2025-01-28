@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { usePathname, useRouter } from '@/i18n/routing';
 import { siteConfig } from '@/lib/constant';
-import { usePathname, useRouter } from '@/lib/i18n';
 
 type Page = {
   title: string;

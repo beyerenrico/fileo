@@ -1,5 +1,7 @@
+import { FunctionComponent } from 'react';
 import { Plus } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { auth } from '@/app/api/auth/[...nextauth]/auth-options';
 import { Heading1, Heading2 } from '@/components/typography';
@@ -17,48 +19,63 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 
-const DocumentPageHeader = () => {
+const DocumentPageHeader = async () => {
+  const t = await getTranslations('DocumentsPage');
+
   return (
     <div className="pb-2">
-      <Heading1>Documents</Heading1>
-      <p className="opacity-50">Here are some documents</p>
+      <Heading1>{t('title')}</Heading1>
+      <p className="opacity-50">{t('description')}</p>
     </div>
   );
 };
 
-const SearchDocuments = () => {
+const SearchDocuments = async () => {
+  const t = await getTranslations('DocumentsPage');
+
   return (
     <div className="py-4">
-      <Input placeholder="Search documents" />
+      <Input placeholder={t('search')} />
     </div>
   );
 };
 
-const DocumentsRowScrollable = () => {
+type DocumentsRowScrollableProps = {
+  children: React.ReactNode;
+  heading: string;
+};
+
+const DocumentsRowScrollable: FunctionComponent<
+  DocumentsRowScrollableProps
+> = async ({ children, heading }) => {
+  const t = await getTranslations('DocumentsPage');
+
   return (
     <div className="py-4">
-      <Heading2>Recently added</Heading2>
+      <Heading2>{heading}</Heading2>
       <ScrollArea className="w-full whitespace-nowrap">
-        <div className="mb-4 flex h-48 w-max space-x-4">
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-          <div className="bg-muted/50 aspect-square rounded-xl" />
-        </div>
+        <div className="mb-4 flex h-48 w-max space-x-4">{children}</div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
       <div className="flex">
-        <Button variant="secondary">View all</Button>
+        <Button variant="secondary">{t('view_all')}</Button>
       </div>
     </div>
+  );
+};
+
+const RecentlyAddedDocumentsRow = async () => {
+  const t = await getTranslations('DocumentsPage');
+
+  // Mockup
+  const mockDocuments = Array.from({ length: 10 });
+
+  return (
+    <DocumentsRowScrollable heading={t('recently_added')}>
+      {mockDocuments.map((_, index) => (
+        <div key={index} className="bg-muted/50 aspect-square rounded-xl" />
+      ))}
+    </DocumentsRowScrollable>
   );
 };
 
@@ -71,7 +88,7 @@ const DocumentAddButton = () => {
             <Plus />
           </Button>
         </SheetTrigger>
-        <SheetContent className="w-[400px] sm:w-[540px]">
+        <SheetContent className="w-full sm:w-[540px]">
           <SheetHeader>
             <SheetTitle>Add a new document</SheetTitle>
             <SheetDescription>
@@ -114,7 +131,13 @@ const DocumentAddButton = () => {
   );
 };
 
-const DocumentsPage = async () => {
+type PageProps = {
+  params: Promise<Record<string, string>>;
+};
+
+const DocumentsPage: FunctionComponent<PageProps> = async ({ params }) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const session = await auth();
 
   if (!session) {
@@ -125,7 +148,7 @@ const DocumentsPage = async () => {
     <section>
       <DocumentPageHeader />
       <SearchDocuments />
-      <DocumentsRowScrollable />
+      <RecentlyAddedDocumentsRow />
       <DocumentAddButton />
     </section>
   );

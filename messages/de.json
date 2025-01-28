@@ -1,0 +1,40 @@
+{
+  "Metadata": {
+    "title": "Fileo",
+    "description": "Beschreibungstext"
+  },
+  "Application": {
+    "not_found": "Diese Seite existiert nicht \uD83D\uDE48",
+    "go_home": "Zurück zur Startseite"
+  },
+  "Navbar": {
+    "sign_in": "Anmelden"
+  },
+  "Sidebar": {
+    "dashboard": "Startseite",
+    "documents": "Dokumente"
+  },
+  "Breadcrumb": {
+    "dashboard": "Startseite",
+    "documents": "Dokumente"
+  },
+  "UserDropdown": {
+    "my_account": "Mein Konto",
+    "log_out": "Abmelden"
+  },
+  "ThemeSwitcher": {
+    "label": "Thema wechseln"
+  },
+  "DocumentsPage": {
+    "title": "Dokumente",
+    "description": "Liste von Dokumenten",
+    "empty": "Keine Dokumente gefunden",
+    "create": "Dokument erstellen",
+    "edit": "Dokument bearbeiten",
+    "delete": "Dokument löschen",
+    "view": "Dokument ansehen",
+    "view_all": "Alle ansehen",
+    "search": "Dokumente suchen",
+    "recently_added": "Zuletzt hinzugefügt"
+  }
+}

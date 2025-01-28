@@ -1,0 +1,40 @@
+{
+  "Metadata": {
+    "title": "Fileo",
+    "description": "Description"
+  },
+  "Application": {
+    "not_found": "This page does not exist \uD83D\uDE48",
+    "go_home": "Go back to home"
+  },
+  "Navbar": {
+    "sign_in": "Sign in"
+  },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "documents": "Documents"
+  },
+  "Breadcrumb": {
+    "dashboard": "Dashboard",
+    "documents": "Documents"
+  },
+  "UserDropdown": {
+    "my_account": "My Account",
+    "log_out": "Log out"
+  },
+  "ThemeSwitcher": {
+    "label": "theme toggle"
+  },
+  "DocumentsPage": {
+    "title": "Documents",
+    "description": "List of documents",
+    "empty": "No documents found",
+    "create": "Create document",
+    "edit": "Edit document",
+    "delete": "Delete document",
+    "view": "View document",
+    "view_all": "View all",
+    "search": "Search documents",
+    "recently_added": "Recently added"
+  }
+}

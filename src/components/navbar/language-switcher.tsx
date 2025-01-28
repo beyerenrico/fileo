@@ -1,5 +1,9 @@
 'use client';
 
+import { useTransition } from 'react';
+import { useParams } from 'next/navigation';
+import { useLocale } from 'next-intl';
+
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -7,35 +11,41 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { usePathname, useRouter } from '@/lib/i18n';
-import {
-  AvailableLanguageTag,
-  availableLanguageTags,
-  languageTag,
-} from '@/paraglide/runtime';
+import { type Locale, routing, usePathname, useRouter } from '@/i18n/routing';
 
-const LanguageLabel: Record<AvailableLanguageTag, string> = {
+const LanguageLabel: Record<Locale, string> = {
   de: 'Deutsch',
   en: 'English',
 };
 
 export const LanguageSwitcher = () => {
   const router = useRouter();
+  const [, startTransition] = useTransition();
   const pathname = usePathname();
+  const params = useParams();
+  const currentLocale = useLocale();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon">
-          {languageTag().toUpperCase()}
+          {currentLocale.toUpperCase()}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {availableLanguageTags.map((locale) => (
+        {routing.locales.map((locale) => (
           <DropdownMenuItem
             key={locale}
             onClick={() => {
-              router.push(pathname, { locale });
+              startTransition(() => {
+                router.replace(
+                  // @ts-expect-error -- TypeScript will validate that only known `params`
+                  // are used in combination with a given `pathname`. Since the two will
+                  // always match for the current route, we can skip runtime checks.
+                  { pathname, params },
+                  { locale }
+                );
+              });
             }}
           >
             {LanguageLabel[locale]}

@@ -1,8 +1,13 @@
-const { paraglide } = require('@inlang/paraglide-next/plugin');
 const { version } = require('./package.json');
+const createNextIntlPlugin = require('next-intl/plugin');
+
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  publicRuntimeConfig: {
+    version,
+  },
   images: {
     remotePatterns: [
       {
@@ -13,13 +18,4 @@ const nextConfig = {
   },
 };
 
-module.exports = paraglide({
-  paraglide: {
-    project: './project.inlang',
-    outdir: './src/paraglide',
-  },
-  publicRuntimeConfig: {
-    version,
-  },
-  ...nextConfig,
-});
+module.exports = withNextIntl(nextConfig);

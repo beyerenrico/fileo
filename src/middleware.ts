@@ -1,20 +1,9 @@
-import { NextRequest } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
 
-import { middleware as paraglide } from '@/lib/i18n';
+import { routing } from './i18n/routing';
 
-export function middleware(request: NextRequest) {
-  return paraglide(request);
-}
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ],
+  matcher: ['/', '/(de|en):path*'],
 };

@@ -1,4 +1,5 @@
 import { GalleryVerticalEnd } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
 import { auth } from '@/app/api/auth/[...nextauth]/auth-options';
 import { NavUser } from '@/components/nav-user';
@@ -13,11 +14,11 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from '@/components/ui/sidebar';
+import { Link } from '@/i18n/routing';
 import { siteConfig } from '@/lib/constant';
-import { Link } from '@/lib/i18n';
-import * as m from '@/paraglide/messages';
 
 export async function AppSidebar() {
+  const t = await getTranslations('Metadata');
   const session = await auth();
 
   if (!session) {
@@ -35,7 +36,7 @@ export async function AppSidebar() {
                   <GalleryVerticalEnd className="size-4" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">{m.app_name()}</span>
+                  <span className="font-semibold">{t('title')}</span>
                   <span className="text-xs opacity-50">
                     v{siteConfig.version()}
                   </span>
